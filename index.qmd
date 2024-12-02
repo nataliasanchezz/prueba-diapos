@@ -12,7 +12,7 @@ execute:
 ## Carga de datos
 
 ```{r}
-load("~/Desktop/MASTER/R/GitHub/datos/accidentes2020_data.rda")
+load("datos/accidentes2020_data.rda")
 library(tidyverse)
 accidentes2020_data
 accidentes <- accidentes2020_data |> 
@@ -20,15 +20,18 @@ accidentes <- accidentes2020_data |>
   
 ```
 
----
+------------------------------------------------------------------------
 
 ## Resumen
 
 ```{r}
-resumen <- accidentes |> count(sexo)
+resumen <- accidentes|> 
+  filter(sexo %in% c("Desconocido"))|> 
+  count(sexo)
+resumen
 ```
 
---- 
+------------------------------------------------------------------------
 
 ## Visualización
 
@@ -38,5 +41,3 @@ ggplot(resumen) +
   ggthemes::scale_fill_colorblind() +
   theme_minimal()
 ```
-
-
